@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { PalletAngularModule } from '@pallet/angular';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+    HeaderComponent,
+    ProfileComponent
+],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PalletAngularModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
