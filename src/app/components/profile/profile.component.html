@@ -1,6 +1,7 @@
 <div>
   <div class='my-button'>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New
+    <button (click)="clickAddMember()" type="button" class="btn btn-success" data-bs-toggle="modal"
+      data-bs-target="#exampleModal">Add New
       Member</button>
   </div>
 
@@ -17,28 +18,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Ana</td>
-        <td>Marquez</td>
-        <td>Software Engineer</td>
-        <td>Columbia</td>
-        <td>Pasta Restaurant</td>
+      <tr *ngFor="let row of memberData;">
+        <td>{{row.id}}</td>
+        <td>{{row.firstName}}</td>
+        <td>{{row.lastName}}</td>
+        <td>{{row.role}}</td>
+        <td>{{row.origin}}</td>
+        <td>{{row.restaurant}}</td>
         <td>
-          <button class="btn btn-warning">Edit</button>
-          <button class="btn btn-danger mx-3">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Rachel</td>
-        <td>Estebana</td>
-        <td>UX Designer</td>
-        <td>Togo</td>
-        <td>Hot Stuff</td>
-        <td>
-          <button class="btn btn-warning">Edit</button>
-          <button class="btn btn-danger mx-3">Delete</button>
+          <button (click)="onEdit(row)" class="btn btn-warning" class="btn btn-success" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Edit</button>
+          <button class="btn btn-danger mx-3" (click)="deleteSingleMember(row)">Delete</button>
         </td>
       </tr>
     </tbody>
@@ -56,7 +46,7 @@
           <form [formGroup]="formValue">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">First Name</label>
-              <input type="text" formControlName="FirstName" class="form-control" id="exampleInputEmail1"
+              <input type="text" formControlName="firstName" class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
@@ -83,7 +73,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
-          <button type="button" (click)="postMemberDetails()" class="btn btn-primary">ADD</button>
+          <button type="button" *ngIf="showAdd" class="btn btn-primary">ADD</button>
+          <button type="button" *ngIf="showUpdate" (click)="updateMemberDetails()"
+            class="btn btn-primary">UPDATE</button>
         </div>
       </div>
     </div>

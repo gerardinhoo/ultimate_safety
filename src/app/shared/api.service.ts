@@ -14,8 +14,8 @@ export class ApiService {
     }))
   }
 
-  getMember(data: any) {
-    return this.http.get<any>("http://localhost:3000/posts", data).pipe(map((res: any) => {
+  getMember() {
+    return this.http.get<any>("http://localhost:3000/posts").pipe(map((res: any) => {
       return res;
     }))
   }
